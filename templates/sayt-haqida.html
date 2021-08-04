@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}SAYT HAQIDA{% endblock title %}
+
+{% block content %}
+
+
+
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex flex-column justify-content-center">
+
+    <nav id="navbar" class="navbar nav-menu">
+      <ul>
+        
+        <li><a href="{% url 'index' %}" class="nav-link scrollto "><i class="bx bx-home"></i> <span>Bosh sahifa</span></a></li>
+        <li><a href="{% url 'maqola' %}" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Maqolalar</span></a></li>
+        <li><a href="{% url 'infografika' %}" class="nav-link scrollto"><i class="bx bx-info-square"></i> <span>Infografika</span></a></li>
+        <li><a href="{% url 'video' %}" class="nav-link scrollto"><i class="bx bx-video"></i> <span>Videolar</span></a></li>
+        <li><a href="{% url 'haqida' %}" class="nav-link scrollto active"><i class="bx bx-info-circle"></i> <span>Sayt haqida</span></a></li>
+        <li><a href="{% url 'aloqa' %}" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Aloqa uchun</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+
+
+
+
+  <section id="homes" class="main-about parallax-section">
+     <div class="overlay"></div>
+     <div class="container">
+          <div class="row">
+
+               <div class="col-md-12 col-sm-12">
+                    <h1>Sayt haqida</h1>
+               </div>
+
+          </div>
+     </div>
+</section>
+
+<section id="about">
+    
+     <div class="container">
+        
+          <div class="row">
+
+               <div class="col-md-offset-1 col-md-10 col-sm-12">                  
+                    <div class="col-md-6 col-sm-6">
+                         
+                         <h3>Fully Customizable!</h3>
+                         <p>Maecenas quis pulvinar neque, non dapibus orci. Integer non suscipit dui. In eu tempor sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras porta lacus ac sagittis imperdiet. Vestibulum eget mattis quam.</p>
+                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercita.</p>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                         <img src="{% static 'assets/img/6.jpg' %}" class="img-responsive" alt="About Image">
+                    </div>
+                    {% for sayt in haqida %} 
+                    <div class="clearfix"></div>
+                    
+                    <h3>{{ sayt.title }}</h3>
+                    <p>{{ sayt.text }}</p>
+                    
+               </div>
+               {% if user.is_superuser %}
+               <a href="{% url 'sayt_haqida_detail' sayt.pk %}"><p class="updel">Sayt haqidagi ma`lumotni tahrirlash va o`chirish</p></a>
+               {% endif %}
+
+               {% endfor %}
+
+
+          </div>
+     </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}MAQOLALAR{% endblock title %}
+
+{% block content %}
+
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex flex-column justify-content-center">
+
+    <nav id="navbar" class="navbar nav-menu">
+      <ul>
+        
+        <li><a href="{% url 'index' %}" class="nav-link scrollto "><i class="bx bx-home"></i> <span>Bosh sahifa</span></a></li>
+        <li><a href="{% url 'maqola' %}" class="nav-link scrollto active"><i class="bx bx-file-blank"></i> <span>Maqolalar</span></a></li>
+        <li><a href="{% url 'infografika' %}" class="nav-link scrollto"><i class="bx bx-info-square"></i> <span>Infografika</span></a></li>
+        <li><a href="{% url 'video' %}" class="nav-link scrollto"><i class="bx bx-video"></i> <span>Videolar</span></a></li>
+        <li><a href="{% url 'haqida' %}" class="nav-link scrollto"><i class="bx bx-info-circle"></i> <span>Sayt haqida</span></a></li>
+        <li><a href="{% url 'aloqa' %}" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Aloqa uchun</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+
+     <section id="blog">
+          <div class="container">
+               <div class="row">
+
+                    
+                    <div class="col-md-offset-1 col-md-10 col-sm-12">
+                         <div class="blog-post-thumb">
+                              <div class="blog-post-title">
+                                   <h3>{{ ii.title }}</h3>
+                              </div>
+                              <div class="blog-post-des">
+                                   <p>{{ ii.text }}</p>
+                                   <a class="btn btn-default" href="{% url 'maqola' %} ">Qaytish</a>
+                                  
+                              </div>
+                              {% if user.is_superuser %}
+                                   <a href="{% url 'maqola_up' ii.pk %}"><p class="updel">Maqolani tahrirlash</p></a>
+                                   <a href="{% url 'maqola_del' ii.pk %}"><p class="updel">Maqolani o`chirish</p></a>
+                              {% endif %}
+                         </div>                                                
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
+{% endblock content %}

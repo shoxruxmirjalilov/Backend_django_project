@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}VIDEOLAR{% endblock title %}
+
+{% block content %}
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex flex-column justify-content-center">
+
+    <nav id="navbar" class="navbar nav-menu">
+      <ul>
+        
+        <li><a href="{% url 'index' %}" class="nav-link scrollto "><i class="bx bx-home"></i> <span>Bosh sahifa</span></a></li>
+        <li><a href="{% url 'maqola' %}" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Maqolalar</span></a></li>
+        <li><a href="{% url 'infografika' %}" class="nav-link scrollto"><i class="bx bx-info-square"></i> <span>Infografika</span></a></li>
+        <li><a href="{% url 'video' %}" class="nav-link scrollto active"><i class="bx bx-video"></i> <span>Videolar</span></a></li>
+        <li><a href="{% url 'haqida' %}" class="nav-link scrollto"><i class="bx bx-info-circle"></i> <span>Sayt haqida</span></a></li>
+        <li><a href="{% url 'aloqa' %}" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Aloqa uchun</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+     <section id="about">
+          <div class="container maqola">
+               <div class="row">
+               <div class="col-md-offset-1 col-md-10 col-sm-12">
+                    <div class="clearfix"></div>		
+                         <h3>Videolar</h3>
+                         <p>Fusce finibus ac orci ut feugiat. Duis accumsan dui non augue ullamcorper, at porta elit lacinia. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras at est non quam mattis hendrerit. Fusce purus massa, pretium malesuada eros nec, feugiat iaculis sem.</p>
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
+
+     {% for vid in video %}
+<section id="blog">
+     <div class="container">
+          <div class="row">
+               <div class="col-md-offset-1 col-md-10 col-sm-12">
+                    <div class="blog-post-thumb">
+                         <div class="blog-post-video">
+                              <div class="embed-responsive embed-responsive-16by9">
+                                   <video controls='controls'>
+
+                                        <source src="{{ vid.video.url }}" type="video/mp4"  />
+                        
+                                    </video>
+                              </div>
+                         </div>
+                         <div class="blog-post-title">
+                              <h3>{{ vid.title }}</h3>
+                         </div>
+                        
+                         <div class="blog-post-des">
+                              <p>{{ vid.qisqacha }}</p>      
+                              <a href="{% url 'vid_detail' vid.pk %}" class="btn btn-default">Batafsil tanishing</a>                      
+                    </div>
+               </div>
+          </div>
+     </div>
+     <div class="hrhr">
+          <hr>
+     </div>
+</section>
+{% endfor %}
+
+
+
+{% endblock content %}

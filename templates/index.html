@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}MATONAT{% endblock title %}
+
+{% block content %}
+
+     
+    
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex flex-column justify-content-center">   
+
+    <nav id="navbar" class="navbar nav-menu">
+         
+      <ul>        
+        <li><a href="{% url 'index' %}" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Bosh sahifa</span></a></li>
+        <li><a href="{% url 'maqola' %}" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Maqolalar</span></a></li>
+        <li><a href="{% url 'infografika' %}" class="nav-link scrollto"><i class="bx bx-info-square"></i> <span>Infografika</span></a></li>
+        <li><a href="{% url 'video' %}" class="nav-link scrollto"><i class="bx bx-video"></i> <span>Videolar</span></a></li>
+        <li><a href="{% url 'haqida' %}" class="nav-link scrollto"><i class="bx bx-info-circle"></i> <span>Sayt haqida</span></a></li>
+        <li><a href="{% url 'aloqa' %}" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Aloqa uchun</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+
+
+
+<section id="home" class="main-home parallax-section">
+     
+     <div class="overlay"></div>
+     <div id="particles-js"></div>
+     
+     <div class="container">
+          
+       
+          <div class="row">
+               
+               <div class="col-md-12 col-sm-12">  
+                    {% if user.is_authenticated %}
+                    <div class="dropdown">
+                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                              {{ user.username | title }}
+                         </a>
+                       
+                         <ul class="dropdown-menu drcolor" aria-labelledby="dropdownMenuLink">
+                              {% if user.is_superuser %}
+                           <li><a class="dropdown-item" href="{% url 'index_new' %}">Bosh sahifaga yangi ma`lumot qo`shish</a></li>  
+                           <li><a class="dropdown-item" href="{% url 'maqola_new' %}">Yangi maqola qo`shish</a></li>
+                           <li><a class="dropdown-item" href="{% url 'maqola-img_new' %}">Yangi foto va maqola qo`shish</a></li>
+                           <li><a class="dropdown-item" href="{% url 'infografika_new' %}">Infografika yangi ma`lumot qo`shish</a></li>
+                           <li><a class="dropdown-item" href="{% url 'video_new' %}">Yangi video qo`shish</a></li>
+                           <li><a class="dropdown-item" href="{% url 'haqida_new' %}">Sayt haqida yangi ma`lumot qo`shish</a></li> 
+                              {% endif %}
+                           <li><a class="dropdown-item" href="{% url 'password_change'%}">Parolni o`zgartirish</a></li>
+                           <li><a class="dropdown-item" href="{% url 'logout' %}">Chiqish</a></li>
+                         </ul>
+                       </div>  
+                       {% else %}
+                       <div class="dropdown">
+                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                              Saytga kirish
+                         </a>
+                       
+                         <ul  class="dropdown-menu drcolor" aria-labelledby="dropdownMenuLink">
+                           <li><a class="dropdown-item" href="{% url 'login' %}">Kirish</a></li>
+                           <li><a class="dropdown-item" href="{% url 'signup' %}">Ro`yxatdan o`tish</a></li>
+                         </ul>
+                       </div>  
+                     
+                       {% endif %}
+                           
+                    <h1>MATONAT.UZ</h1>
+                    {% if user.is_authenticated %}
+                    <h4>Saytga xush kelibsiz {{ user.username | title }}</h4>
+                    {% endif %}
+                    <h4>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                          Culpa quae numquam, quasi ipsa deleniti veniam minus, 
+                          vitae magnam dolores officiis cupiditate voluptatem ab
+                           modi dolore possimus sunt magni quas. Optio!</h4>            
+               </div>
+
+          </div>
+          
+     </div>
+</section>
+
+
+    {% for i in btext %} 
+<section id="about">
+     <div class="container">
+          <div class="row">
+
+               <div class="col-md-offset-1 col-md-10 col-sm-12">
+                    
+                   
+					
+                    <h3>{{ i.title }}</h3>
+                    <p>{{ i.text }}</p>
+
+                    {% if user.is_superuser %}
+                    <a href="{% url 'index_detail' i.pk %}"><p class="updel">Ma`lumotni tahrirlash va o`chirish</p></a>
+                    {% endif %}
+                    
+               </div>
+
+          </div>
+     </div>
+</section>
+       {% endfor %}
+
+
+       {% endblock content %}

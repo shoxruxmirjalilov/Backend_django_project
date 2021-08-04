@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Saytga kirish{% endblock title %}
+
+{% block content %}
+      
+      <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+      <!-- ======= Header ======= -->
+      <header id="header" class="d-flex flex-column justify-content-center">   
+    
+        <nav id="navbar" class="navbar nav-menu">
+             
+          <ul>        
+            <li><a href="{% url 'index' %}" class="nav-link scrollto"><i class="bx bx-home"></i> <span>Bosh sahifa</span></a></li>
+            <li><a href="{% url 'maqola' %}" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Maqolalar</span></a></li>
+            <li><a href="{% url 'infografika' %}" class="nav-link scrollto"><i class="bx bx-info-square"></i> <span>Infografika</span></a></li>
+            <li><a href="{% url 'video' %}" class="nav-link scrollto"><i class="bx bx-video"></i> <span>Videolar</span></a></li>
+            <li><a href="{% url 'haqida' %}" class="nav-link scrollto"><i class="bx bx-info-circle"></i> <span>Sayt haqida</span></a></li>
+            <li><a href="{% url 'aloqa' %}" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Aloqa uchun</span></a></li>
+          </ul>
+        </nav>
+      </header>
+    
+    
+    
+
+    
+    <section id="homes" class="main-about parallax-section">
+        <div class="overlay"></div>
+        <div class="container">
+             <div class="row">
+   
+                  <div class="col-md-12 col-sm-12">
+                       <h1>Kirish</h1>
+                  </div>
+   
+             </div>
+        </div>
+   </section>
+
+
+    <div class="container">
+
+    <h2>Saytga kirish</h2>
+    <form method="post">{% csrf_token %}
+        {{ form|crispy }}
+        <button class="btn btn-success ml-2" type="submit">Kirish</button>
+        <a class="btn btn-outline-danger" href="{% url 'password_reset'  %}" role="button">Parolni tiklash</a>
+    </form>
+
+    </div>
+    <div><br><br><br></div>
+
+
+    {% endblock content %}
+

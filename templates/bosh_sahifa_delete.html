@@ -1,0 +1,58 @@
+
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}MA`LUMOTNI O`CHIRISH{% endblock title %}
+
+{% block content %}
+
+
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex flex-column justify-content-center">
+
+    <nav id="navbar" class="navbar nav-menu">
+      <ul>
+        
+        <li><a href="{% url 'index' %}" class="nav-link scrollto "><i class="bx bx-home"></i> <span>Bosh sahifa</span></a></li>
+        <li><a href="{% url 'maqola' %}" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Maqolalar</span></a></li>
+        <li><a href="{% url 'infografika' %}" class="nav-link scrollto"><i class="bx bx-info-square"></i> <span>Infografika</span></a></li>
+        <li><a href="{% url 'video' %}" class="nav-link scrollto"><i class="bx bx-video"></i> <span>Videolar</span></a></li>
+        <li><a href="{% url 'haqida' %}" class="nav-link scrollto"><i class="bx bx-info-circle"></i> <span>Sayt haqida</span></a></li>
+        <li><a href="{% url 'aloqa' %}" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Aloqa uchun</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+
+
+
+
+  <section id="homes" class="main-about parallax-section">
+     <div class="overlay"></div>
+     <div class="container">
+          <div class="row">
+
+               <div class="col-md-12 col-sm-12">
+                    <h1>Ma`lumotni o`chirish</h1>
+               </div>
+
+          </div>
+     </div>
+</section>
+<div><br><br><br><br><br><br></div>
+
+<div class="container">
+
+<h3>Bosh sahifa ma`lumotini o`chirish</h3>
+<form action="" method="post">{% csrf_token %}
+    <p>Ma`lumotni o'chirishni istaysizmi?</p>
+    <button class="btn btn-danger ml-2" type="submit">Ha</button>
+</div>
+
+<div><br><br><br><br><br><br></div>
+
+
+{% endblock content %}
